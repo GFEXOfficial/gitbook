@@ -1,5 +1,5 @@
 ---
-description: Introduction of GFEX
+description: GFEX 简介
 cover: .gitbook/assets/X_banner.png
 coverY: -11
 metaLinks:
@@ -9,34 +9,34 @@ metaLinks:
 
 # 👋 Introduction
 
-## Welcome to GFEX!
+## 欢迎来到 GFEX！
 
-GFEX (Gapped Futures EXchange) is your gateway to the next generation of cryptocurrency trading. Our platform offers a unique way to engage in futures trading by forecasting price gaps between two crypto assets.
+GFEX（Gapped Futures EXchange）是通往下一代加密货币交易的入口。我们的平台通过预测两种加密资产之间的价格差，提供了一种全新的期货交易方式。
 
-#### Why GFEX?
+#### 为什么选择 GFEX？
 
-* **Decentralized Trading**: Connect your own cryptocurrency wallet and trade directly, without intermediaries.
-* **Transparent Operations**: Powered by Web3 infrastructure, ensuring secure, private, and transparent transactions.
-* **User-First Approach**: GFEX doesn’t hold your funds or control your wallet. Your assets, your rules.
+* **去中心化交易**： 连接你的加密钱包，直接交易，无需中介。
+* **透明的运行机制：** 基于 Web3 基础设施，确保交易安全、隐私与透明。
+* **用户至上：** GFEX 不托管你的资金，也不会控制你的钱包。资产属于你，你说了算。
 
-#### How It Works
+#### 如何运作
 
-1. **Connect Your Wallet**: Use any Web3-compatible wallet to get started.
-2. **Predict Price Gaps**: Participate in markets by forecasting whether the gap between two assets will widen or narrow.
-3. **Earn Rewards**: If your prediction is correct, enjoy the profits—after minimal fees.
+* **连接钱包：** 使用任何兼容 Web3 的钱包即可开始。
+* **预测价格差：** 通过预测两种资产之间的价格差将扩大还是缩小参与市场。
+* **获取奖励：** 如果你的预测正确，在扣除少量费用后即可获得收益。
 
-#### Simple Fee Structure
+#### 简单明了的费用结构
 
-* **2% Transaction Fee**: For every trade made on the platform.
-* **6% Profit Fee**: Applied only when your trade is successful.
+* **2% 交易费：** 每笔交易都会收取。
+* **6% 盈利费：** 仅在你盈利时收取。
 
-#### Explore the Future of Crypto Trading
+### **探索加密交易的未来**
 
-At GFEX, we combine cutting-edge blockchain technology with innovative trading mechanisms, giving you a seamless and secure trading experience. Whether you're a seasoned trader or just starting out, GFEX empowers you to trade with confidence.
+在 GFEX，我们将前沿区块链技术与创新的交易机制结合，为你提供顺畅且安全的交易体验。无论你是经验丰富的交易者还是刚刚起步，GFEX 都将助你自信交易。
 
-Ready to experience the power of decentralized futures trading?
+**准备体验去中心化期货交易的力量了吗？**
 
 \
-[<mark style="color:red;">**Start Trading Now!**</mark>](https://www.gfex.io/)
+[<mark style="color:red;">👉</mark> <mark style="color:red;"></mark><mark style="color:red;">**立即开始交易！**</mark>](https://www.gfex.io)
 
 <figure><img src=".gitbook/assets/bit.ly_gfex.png" alt="GFEX QR Code" width="188"><figcaption></figcaption></figure>
