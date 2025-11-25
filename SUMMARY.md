@@ -23,25 +23,25 @@
 
 * [资产兑换（Swap，由 WOWMAX 提供技术支持）](dui-huan/zi-chan-dui-huan-swap-you-wowmax-ti-gong-ji-shu-zhi-chi.md)
 
-## Referral System
+## 推荐系统
 
-* [推荐计划（Referral Program）](referral-system/tui-jian-ji-hua-referral-program.md)
+* [推荐计划（Referral Program）](tui-jian-xi-tong/tui-jian-ji-hua-referral-program.md)
 
-## FAQ and More Information
+## 常见问题与更多信息
 
-* [FAQ](faq-and-more-information/faq.md)
+* [常见问题（FAQ）](chang-jian-wen-ti-yu-geng-duo-xin-xi/chang-jian-wen-ti-faq.md)
 
-## Legal
+## 法律信息
 
-* [Terms of Service](legal/terms-of-service.md)
-* [Disclaimer](legal/disclaimer.md)
+* [服务条款（Terms of Service）](falxin-xi/fu-wu-tiao-kuan-terms-of-service.md)
+* [免责声明（Disclaimer）](falxin-xi/mian-ze-sheng-ming-disclaimer.md)
 
-## Social Media
+## 社交媒体
 
 * [X](https://x.com/GFEXOFFICIAL)
 * [Medium](https://gfex.medium.com/)
 * [Minds](https://www.minds.com/gfexofficial/)
 
-## OFFICIAL WEBSITE
+## 官方网站
 
 * [GFEX](https://www.gfex.io)
