@@ -5,12 +5,12 @@
 ## 如何使用
 
 * [使用 Web3 平台](ru-he-shi-yong/shi-yong-web3-ping-tai.md)
-* [Web3 Wallet and Crypto Assets for GFEX](ru-he-shi-yong/web3-wallet-and-crypto-assets-for-gfex.md)
-* [Metamask RPC Setup (Base Network)](ru-he-shi-yong/metamask-rpc-setup-base-network.md)
-* [Metamask RPC Setup (Sepolia Testnet)](ru-he-shi-yong/metamask-rpc-setup-sepolia-testnet.md)
-* [Free Trial and Real Trading](ru-he-shi-yong/free-trial-and-real-trading.md)
-* [GFEX Tutorial (PC, Desktop)](ru-he-shi-yong/gfex-tutorial-pc-desktop.md)
-* [GFEX Tutorial (Mobile)](ru-he-shi-yong/gfex-tutorial-mobile.md)
+* [适用于 GFEX 的 Web3 钱包与加密资产](ru-he-shi-yong/shi-yong-yu-gfex-de-web3-qian-bao-yu-jia-mi-zi-chan.md)
+* [MetaMask RPC 设置（Base 网络）](ru-he-shi-yong/metamask-rpc-she-zhi-base-wang-luo.md)
+* [MetaMask RPC 设置（Sepolia 测试网）](ru-he-shi-yong/metamask-rpc-she-zhi-sepolia-ce-shi-wang.md)
+* [免费体验与真实交易](ru-he-shi-yong/mian-fei-ti-yan-yu-zhen-shi-jiao-yi.md)
+* [GFEX 教程（PC/桌面版）](ru-he-shi-yong/gfex-jiao-cheng-pc-zhuo-mian-ban.md)
+* [GFEX 教程（移动端）](ru-he-shi-yong/gfex-jiao-cheng-yi-dong-duan.md)
 * [Allowance Setting](ru-he-shi-yong/allowance-setting.md)
 * [Video Tutorial](https://youtu.be/nevkGvM6pDc?feature=shared)
 
