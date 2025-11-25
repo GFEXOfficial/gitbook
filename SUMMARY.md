@@ -11,8 +11,8 @@
 * [免费体验与真实交易](ru-he-shi-yong/mian-fei-ti-yan-yu-zhen-shi-jiao-yi.md)
 * [GFEX 教程（PC/桌面版）](ru-he-shi-yong/gfex-jiao-cheng-pc-zhuo-mian-ban.md)
 * [GFEX 教程（移动端）](ru-he-shi-yong/gfex-jiao-cheng-yi-dong-duan.md)
-* [Allowance Setting](ru-he-shi-yong/allowance-setting.md)
-* [Video Tutorial](https://youtu.be/nevkGvM6pDc?feature=shared)
+* [额度设置（Allowance Setting）](ru-he-shi-yong/e-du-she-zhi-allowance-setting.md)
+* [视频教程](https://youtu.be/nevkGvM6pDc?feature=shared)
 
 ## Investment&#x20;
 
