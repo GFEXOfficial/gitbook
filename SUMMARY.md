@@ -2,16 +2,16 @@
 
 * [👋 Introduction](README.md)
 
-## How to
+## 如何使用
 
-* [Using Web3 Platform](how-to/using-web3-platform.md)
-* [Web3 Wallet and Crypto Assets for GFEX](how-to/web3-wallet-and-crypto-assets-for-gfex.md)
-* [Metamask RPC Setup (Base Network)](how-to/metamask-rpc-setup-base-network.md)
-* [Metamask RPC Setup (Sepolia Testnet)](how-to/metamask-rpc-setup-sepolia-testnet.md)
-* [Free Trial and Real Trading](how-to/free-trial-and-real-trading.md)
-* [GFEX Tutorial (PC, Desktop)](how-to/gfex-tutorial-pc-desktop.md)
-* [GFEX Tutorial (Mobile)](how-to/gfex-tutorial-mobile.md)
-* [Allowance Setting](how-to/allowance-setting.md)
+* [使用 Web3 平台](ru-he-shi-yong/shi-yong-web3-ping-tai.md)
+* [Web3 Wallet and Crypto Assets for GFEX](ru-he-shi-yong/web3-wallet-and-crypto-assets-for-gfex.md)
+* [Metamask RPC Setup (Base Network)](ru-he-shi-yong/metamask-rpc-setup-base-network.md)
+* [Metamask RPC Setup (Sepolia Testnet)](ru-he-shi-yong/metamask-rpc-setup-sepolia-testnet.md)
+* [Free Trial and Real Trading](ru-he-shi-yong/free-trial-and-real-trading.md)
+* [GFEX Tutorial (PC, Desktop)](ru-he-shi-yong/gfex-tutorial-pc-desktop.md)
+* [GFEX Tutorial (Mobile)](ru-he-shi-yong/gfex-tutorial-mobile.md)
+* [Allowance Setting](ru-he-shi-yong/allowance-setting.md)
 * [Video Tutorial](https://youtu.be/nevkGvM6pDc?feature=shared)
 
 ## Investment&#x20;
