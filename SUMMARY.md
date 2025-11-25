@@ -14,18 +14,18 @@
 * [额度设置（Allowance Setting）](ru-he-shi-yong/e-du-she-zhi-allowance-setting.md)
 * [视频教程](https://youtu.be/nevkGvM6pDc?feature=shared)
 
-## Investment&#x20;
+## 投资
 
-* [How Trading on GFEX Works](investment/how-trading-on-gfex-works.md)
-* [How Proceeds Are Calculated](investment/how-proceeds-are-calculated.md)
+* [GFEX 的交易原理](tou-zi/gfex-de-jiao-yi-yuan-li.md)
+* [收益计算方式](tou-zi/shou-yi-ji-suan-fang-shi.md)
 
-## SWAP
+## 兑换
 
-* [Swap (Powered by WOWMAX)](swap/swap-powered-by-wowmax.md)
+* [资产兑换（Swap，由 WOWMAX 提供技术支持）](dui-huan/zi-chan-dui-huan-swap-you-wowmax-ti-gong-ji-shu-zhi-chi.md)
 
 ## Referral System
 
-* [Referral Program](referral-system/referral-program.md)
+* [推荐计划（Referral Program）](referral-system/tui-jian-ji-hua-referral-program.md)
 
 ## FAQ and More Information
 
