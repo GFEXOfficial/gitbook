@@ -7,7 +7,7 @@ metaLinks:
     - https://app.gitbook.com/s/Df3l3S9PwVJaNDJOXgvg/
 ---
 
-# 👋 Introduction
+# 👋 简介
 
 ## 欢迎来到 GFEX！
 
@@ -39,4 +39,4 @@ GFEX（Gapped Futures EXchange）是通往下一代加密货币交易的入口�
 \
 [<mark style="color:red;">👉</mark> <mark style="color:red;"></mark><mark style="color:red;">**立即开始交易！**</mark>](https://www.gfex.io)
 
-<figure><img src=".gitbook/assets/bit.ly_gfex.png" alt="GFEX QR Code" width="188"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/qrcode.png" alt=""><figcaption></figcaption></figure>
