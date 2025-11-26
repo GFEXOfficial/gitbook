@@ -1,7 +1,7 @@
 ---
 description: GFEX 简介
-cover: .gitbook/assets/X_banner.png
-coverY: -11
+cover: .gitbook/assets/Gemini_Generated_Image_xcg6xuxcg6xuxcg6.png
+coverY: 0
 metaLinks:
   alternates:
     - https://app.gitbook.com/s/Df3l3S9PwVJaNDJOXgvg/
