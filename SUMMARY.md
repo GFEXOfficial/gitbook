@@ -1,6 +1,6 @@
 # Table of contents
 
-* [👋 Introduction](README.md)
+* [👋 简介](README.md)
 
 ## 如何使用
 
