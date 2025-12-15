@@ -40,6 +40,7 @@
 
 * [X](https://x.com/GFEXOFFICIAL)
 * [Medium](https://gfex.medium.com/)
+* [Discord](https://discord.com/invite/GJ5RD2Ve)
 * [Paragraph](https://paragraph.com/@gfex)
 * [Farcaster](https://farcaster.xyz/gfex)
 * [Minds](https://www.minds.com/gfexofficial/)
