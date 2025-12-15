@@ -40,6 +40,8 @@
 
 * [X](https://x.com/GFEXOFFICIAL)
 * [Medium](https://gfex.medium.com/)
+* [Paragraph](https://paragraph.com/@gfex)
+* [Farcaster](https://farcaster.xyz/gfex)
 * [Minds](https://www.minds.com/gfexofficial/)
 
 ## 官方网站
