@@ -19,9 +19,10 @@
 * [GFEX 的交易原理](tou-zi/gfex-de-jiao-yi-yuan-li.md)
 * [收益计算方式](tou-zi/shou-yi-ji-suan-fang-shi.md)
 
-## 兑换
+## 兑换 ( 由 WOWMAX 提供技术支持 )
 
-* [资产兑换（Swap，由 WOWMAX 提供技术支持）](dui-huan/zi-chan-dui-huan-swap-you-wowmax-ti-gong-ji-shu-zhi-chi.md)
+* [资产兑换（Swap）](dui-huan-you-wowmax-ti-gong-ji-shu-zhi-chi/zi-chan-dui-huan-swap.md)
+* [跨链](dui-huan-you-wowmax-ti-gong-ji-shu-zhi-chi/kua-lian.md)
 
 ## 推荐系统
 

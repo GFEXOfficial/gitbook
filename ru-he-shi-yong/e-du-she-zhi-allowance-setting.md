@@ -37,14 +37,14 @@ metaLinks:
 
 #### 1. 点击你的钱包地址按钮，进入 **“我的页面 (My Page)”**。
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 #### 2. 导航至 **“余额 (Balance)”** 标签页。
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 3. 向下滚动至 额度设置（Allowance Setting） 区域。
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 4. 将授权额度设置为你希望的金额，以跳过每次单独授权的步骤。.
