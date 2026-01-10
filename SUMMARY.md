@@ -29,6 +29,10 @@
 
 * [推荐计划（Referral Program）](tui-jian-xi-tong/tui-jian-ji-hua-referral-program.md)
 
+## 数字收藏品（NFT、SFT、FT）
+
+* [GFEX NFT 指南](shu-zi-shou-cang-pin-nftsftft/gfex-nft-zhi-nan.md)
+
 ## 常见问题与更多信息
 
 * [常见问题（FAQ）](chang-jian-wen-ti-yu-geng-duo-xin-xi/chang-jian-wen-ti-faq.md)
