@@ -8,6 +8,8 @@ description: >-
 
 用户可以通过在 GFEX 上交易并满足特定要求来获得 FT 和 SFT 收藏品。这些收集的资产随后可以被铸造成独家 NFT，这些 NFT 提供终极福利，并可以在 OpenSea 等主要的二级市场上进行交易。
 
+{% embed url="https://youtu.be/W8pmoA2qpwQ?si=yEuNQCBNQb5wYFG9" %}
+
 ## 1. FT (同质化代币) 道具
 
 #### A. 首次钱包连接 (First Wallet Connection)
