@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GFEX Incident Report — 2026-03-02</title>
+<style>
+  :root { --bg: #0a0a0f; --surface: #13120e; --border: #2a2a35; --text: #e0e0e0; --muted: #888; --up: #00d4aa; --down: #ff4757; --accent: #ffb800; --blue: #627eea; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; line-height: 1.6; padding: 2rem; max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; color: white; margin-bottom: 0.5rem; }
+  h2 { font-size: 1.3rem; color: var(--accent); margin: 2rem 0 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+  h3 { font-size: 1.1rem; color: white; margin: 1.5rem 0 0.5rem; }
+  .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem; }
+  .severity { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+  .sev-critical { background: var(--down); color: white; }
+  .sev-high { background: #e67700; color: white; }
+  .sev-medium { background: var(--accent); color: #000; }
+  .sev-low { background: var(--blue); color: white; }
+  .sev-fixed { background: var(--up); color: #000; }
+  .status { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin-left: 0.5rem; }
+  .status-fixed { background: var(--up); color: #000; }
+  .status-pending { background: var(--accent); color: #000; }
+  .status-monitoring { background: var(--blue); color: white; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+  th, td { padding: 0.6rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+  th { color: var(--muted); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; }
+  code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.85rem; color: var(--accent); }
+  pre { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; overflow-x: auto; font-size: 0.82rem; margin: 0.5rem 0; }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0; }
+  .summary-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; text-align: center; }
+  .summary-item .number { font-size: 2rem; font-weight: 700; color: white; }
+  .summary-item .label { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+  ul { margin: 0.5rem 0; padding-left: 1.5rem; }
+  li { margin: 0.3rem 0; font-size: 0.9rem; }
+  .timeline { border-left: 2px solid var(--border); padding-left: 1.5rem; margin: 1rem 0; }
+  .timeline-item { position: relative; margin-bottom: 1rem; }
+  .timeline-item::before { content: ''; position: absolute; left: -1.75rem; top: 0.5rem; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+  .timeline-item .time { font-size: 0.75rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<h1>GFEX Incident Report</h1>
+<p class="subtitle">2026-03-02 | Sentry + Railway Log Analysis | Round Manager & Web Frontend</p>
+
+<div class="summary-grid">
+  <div class="summary-item">
+    <div class="number" style="color: var(--down)">3</div>
+    <div class="label">Critical Issues Found</div>
+  </div>
+  <div class="summary-item">
+    <div class="number" style="color: var(--accent)">36</div>
+    <div class="label">Sentry Issues (round-manager)</div>
+  </div>
+  <div class="summary-item">
+    <div class="number" style="color: var(--blue)">32</div>
+    <div class="label">Sentry Issues (web)</div>
+  </div>
+  <div class="summary-item">
+    <div class="number" style="color: var(--up)">3</div>
+    <div class="label">Fixes Applied</div>
+  </div>
+</div>
+
+<!-- ==================== CRITICAL ISSUES ==================== -->
+<h2>1. Critical Issues &amp; Fixes</h2>
+
+<!-- Issue 1: Stuck Pending Rounds -->
+<div class="card">
+  <h3><span class="severity sev-critical">CRITICAL</span> <span class="status status-fixed">FIXED</span> Stuck Pending Rounds (Infinite Settlement Retry)</h3>
+  <p style="margin-top:0.5rem;"><strong>Affected Rounds:</strong> #59080193, #59079578 (both <code>round_id % 3 == 2</code>, Operator #2)</p>
+  <p><strong>Symptom:</strong> "Settling round XXXX" log repeats every 15 seconds, but no TX is sent. Round shows as "Pending" in frontend forever.</p>
+  <p><strong>Root Cause:</strong></p>
+  <ul>
+    <li>After round-manager restart, <code>gap_cache</code> is empty (in-memory only)</li>
+    <li>Two locations use <code>if round_id in self.gap_cache:</code> before setting <code>settled=True</code></li>
+    <li>When a round's data came from <code>get_cached_lock_gap</code> (not local gap_cache), the entry doesn't exist</li>
+    <li>On-chain pre-check confirms <code>settled=true</code> and returns, but never marks cache → infinite retry</li>
+  </ul>
+  <p><strong>Fix:</strong> Changed both locations to <code>self.gap_cache.setdefault(round_id, {})</code></p>
+  <pre>
+# Before (broken):
+if round_id in self.gap_cache:
+    self.gap_cache[round_id]["settled"] = True
+
+# After (fixed):
+self.gap_cache.setdefault(round_id, {})["settled"] = True</pre>
+  <p><strong>File:</strong> <code>services/round-manager/app/scheduler.py</code> (lines ~333, ~457)</p>
+  <p><strong>Sentry Reference:</strong> TimeExhausted for round 59079578 (120s TX timeout)</p>
+</div>
+
+<!-- Issue 2: Telegram MarkdownV2 -->
+<div class="card">
+  <h3><span class="severity sev-high">HIGH</span> <span class="status status-fixed">FIXED</span> Telegram Notifier MarkdownV2 Parse Error</h3>
+  <p style="margin-top:0.5rem;"><strong>Symptom:</strong> Railway warns every 15 seconds: <code>Telegram send failed: 400 ... can't parse entities: Character '.' is reserved and must be escaped</code></p>
+  <p><strong>Root Cause:</strong> <code>telegram_notifier.py</code> uses MarkdownV2 parse mode but doesn't escape special characters (<code>.</code>, <code>$</code>, <code>,</code>) in formatted numbers like <code>$1,234.56</code></p>
+  <p><strong>Fix:</strong> Imported <code>escape_md()</code> from <code>bot_formatters.py</code> and applied to all dynamic values. Also escaped <code>.</code> in static URLs (<code>gfex.io</code> → <code>gfex\\.io</code>).</p>
+  <p><strong>File:</strong> <code>services/round-manager/app/telegram_notifier.py</code></p>
+</div>
+
+<!-- Issue 3: Telegram Auth -->
+<div class="card">
+  <h3><span class="severity sev-high">HIGH</span> <span class="status status-pending">INVESTIGATING</span> Telegram Mini App Auth — Invalid Hash (403)</h3>
+  <p style="margin-top:0.5rem;"><strong>Symptom:</strong> Users opening GFEX via Telegram see "!" error: <code>API 403: {"error":"Invalid hash"}</code></p>
+  <p><strong>Root Cause (suspected):</strong> <code>TELEGRAM_BOT_TOKEN</code> on Vercel doesn't match the bot token Telegram uses to sign initData</p>
+  <p><strong>Actions Taken:</strong></p>
+  <ul>
+    <li>Added debug info (tokenPrefix, hash comparison) to API response</li>
+    <li>Deployed debug build to Vercel for diagnosis</li>
+    <li>Enhanced error display in frontend (shows error text instead of just "!" icon)</li>
+  </ul>
+  <p><strong>Next Step:</strong> User needs to check Telegram app and compare tokenPrefix in error debug info with actual bot token</p>
+  <p><strong>Files:</strong> <code>apps/web/app/api/telegram-auth/route.ts</code>, <code>apps/web/app/DynamicProvider.tsx</code>, <code>apps/web/app/page.tsx</code></p>
+</div>
+
+<!-- ==================== SENTRY ANALYSIS ==================== -->
+<h2>2. Sentry Issue Analysis</h2>
+
+<h3>2.1 Round Manager (36 issues)</h3>
+<table>
+  <thead>
+    <tr><th>Severity</th><th>Issue</th><th>Events</th><th>Status</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="severity sev-critical">CRIT</span></td>
+      <td><code>TimeExhausted</code> — round 59079578</td>
+      <td>Multiple</td>
+      <td><span class="status status-fixed">ROOT CAUSE FIXED</span></td>
+      <td>120s TX timeout from infinite settlement retry. Fixed by gap_cache setdefault</td>
+    </tr>
+    <tr>
+      <td><span class="severity sev-high">HIGH</span></td>
+      <td><code>Settlement failed after 3 attempts</code> — round 59079578</td>
+      <td>3</td>
+      <td><span class="status status-fixed">ROOT CAUSE FIXED</span></td>
+      <td>Same root cause as above</td>
+    </tr>
+    <tr>
+      <td><span class="severity sev-high">HIGH</span></td>
+      <td><code>fillHousePool TX timeout</code></td>
+      <td>Occasional</td>
+      <td><span class="status status-monitoring">MONITORING</span></td>
+      <td>RPC latency spikes; multi-operator rotation reduces impact</td>
+    </tr>
+    <tr>
+      <td><span class="severity sev-medium">MED</span></td>
+      <td><code>nonce too low</code></td>
+      <td>Occasional</td>
+      <td><span class="status status-monitoring">MONITORING</span></td>
+      <td>Multi-operator rotation (3 addresses) already mitigates. Per-operator nonce lock in place</td>
+    </tr>
+    <tr>
+      <td><span class="severity sev-medium">MED</span></td>
+      <td><code>RPC internal error</code></td>
+      <td>Occasional</td>
+      <td><span class="status status-monitoring">MONITORING</span></td>
+      <td>CDP RPC transient errors. Retry logic in _send_tx handles most cases</td>
+    </tr>
+    <tr>
+      <td><span class="severity sev-medium">MED</span></td>
+      <td><code>terminated by other getUpdates request</code></td>
+      <td>Periodic</td>
+      <td><span class="status status-monitoring">MONITORING</span></td>
+      <td>Multiple bot instances polling. Only one should run polling; others webhook-only</td>
+    </tr>
+    <tr>
+      <td><span class="severity sev-low">LOW</span></td>
+      <td><code>NetworkError: Bad Gateway</code></td>
+      <td>Rare</td>
+      <td><span class="status status-monitoring">MONITORING</span></td>
+      <td>Telegram API transient. No action needed</td>
+    </tr>
+    <tr>
+      <td><span class="severity sev-low">LOW</span></td>
+      <td><code>ConnectionError</code> — Base RPC</td>
+      <td>Rare</td>
+      <td><span class="status status-monitoring">MONITORING</span></td>
+      <td>CDP RPC connection drops. Auto-retry handles</td>
+    </tr>
+    <tr>
+      <td><span class="severity sev-low">LOW</span></td>
+      <td><code>getActiveRounds decode error</code></td>
+      <td>Rare</td>
+      <td><span class="status status-monitoring">MONITORING</span></td>
+      <td>RPC returns empty/corrupt data during high load</td>
+    </tr>
+    <tr>
+      <td><span class="severity sev-low">LOW</span></td>
+      <td><code>mainnet.base.org SSL error</code></td>
+      <td>Rare</td>
+      <td><span class="status status-monitoring">MONITORING</span></td>
+      <td>Public RPC fallback. Should never hit — CDP RPC is primary</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>2.2 Web Frontend (32 issues)</h3>
+<table>
+  <thead>
+    <tr><th>Severity</th><th>Issue</th><th>Events</th><th>Status</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="severity sev-high">HIGH</span></td>
+      <td><code>useDynamicContext must be used within DynamicContextProvider</code></td>
+      <td>Multiple</td>
+      <td><span class="status status-monitoring">MONITORING</span></td>
+      <td>Race condition during page load. Provider mounts before hooks resolve</td>
+    </tr>
+    <tr>
+      <td><span class="severity sev-medium">MED</span></td>
+      <td><code>placeInvestment reverted</code> (ContractFunctionRevertedError)</td>
+      <td>Multiple</td>
+      <td><span class="status status-monitoring">MONITORING</span></td>
+      <td>User bets after round lock time. Frontend should disable button earlier</td>
+    </tr>
+    <tr>
+      <td><span class="severity sev-medium">MED</span></td>
+      <td><code>TransactionExecutionError</code></td>
+      <td>Occasional</td>
+      <td><span class="status status-monitoring">MONITORING</span></td>
+      <td>Gas estimation failures or insufficient balance</td>
+    </tr>
+    <tr>
+      <td><span class="severity sev-low">LOW</span></td>
+      <td><code>TypeError: Cannot read properties of null (reading 'data')</code></td>
+      <td>Rare</td>
+      <td><span class="status status-monitoring">MONITORING</span></td>
+      <td>Null response from RPC during transient issues</td>
+    </tr>
+    <tr>
+      <td><span class="severity sev-low">LOW</span></td>
+      <td><code>Failed to fetch dynamicauth.com</code></td>
+      <td>Rare</td>
+      <td><span class="status status-monitoring">MONITORING</span></td>
+      <td>Dynamic SDK CDN unreachable. User network issue</td>
+    </tr>
+    <tr>
+      <td><span class="severity sev-low">LOW</span></td>
+      <td><code>getRewardpotPool error</code></td>
+      <td>Rare</td>
+      <td><span class="status status-monitoring">MONITORING</span></td>
+      <td>Contract read timeout</td>
+    </tr>
+    <tr>
+      <td><span class="severity sev-low">LOW</span></td>
+      <td><code>MetaMask connect fail</code></td>
+      <td>Rare</td>
+      <td><span class="status status-monitoring">MONITORING</span></td>
+      <td>User rejected or MetaMask locked</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ==================== RAILWAY LOGS ==================== -->
+<h2>3. Railway Log Analysis</h2>
+
+<div class="card">
+  <h3>Recurring Warnings</h3>
+  <table>
+    <thead>
+      <tr><th>Frequency</th><th>Message</th><th>Impact</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Every 15s</td>
+        <td><code>Telegram send failed: 400 ... Character '.' is reserved</code></td>
+        <td>All Telegram notifications silently fail</td>
+        <td><span class="status status-fixed">FIXED</span></td>
+      </tr>
+      <tr>
+        <td>Every 15s</td>
+        <td><code>Settling round 59080193</code> (repeated)</td>
+        <td>Wasted compute + log noise from stuck round</td>
+        <td><span class="status status-fixed">FIXED</span></td>
+      </tr>
+      <tr>
+        <td>Occasional</td>
+        <td><code>Pre-check failed for round XXXX</code></td>
+        <td>Low — falls through to normal settlement</td>
+        <td><span class="status status-monitoring">OK</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ==================== FIXES SUMMARY ==================== -->
+<h2>4. Applied Fixes Summary</h2>
+
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>#</th><th>File</th><th>Change</th><th>Impact</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><code>scheduler.py</code> (2 locations)</td>
+        <td><code>gap_cache.setdefault()</code> — prevent infinite settlement retry</td>
+        <td>Eliminates stuck "Pending" rounds after service restart</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><code>telegram_notifier.py</code></td>
+        <td>Import &amp; use <code>escape_md()</code> for all dynamic values</td>
+        <td>Fixes all Telegram notification failures (MarkdownV2 parse errors)</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><code>DynamicProvider.tsx</code></td>
+        <td>Better Telegram auth error surfacing with step prefixes</td>
+        <td>Users see specific error messages instead of generic "!" icon</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><code>page.tsx</code></td>
+        <td>TelegramAuthStatus shows error text with truncation</td>
+        <td>Clickable error display for debugging in production</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><code>telegram-auth/route.ts</code></td>
+        <td>Debug info in Invalid hash response (tokenPrefix, hash comparison)</td>
+        <td>Enables diagnosis of Telegram auth token mismatch</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ==================== DEPLOYMENT ==================== -->
+<h2>5. Deployment Plan</h2>
+
+<div class="card">
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="time">Step 1</div>
+      <p><strong>Deploy round-manager to Railway</strong></p>
+      <p>Fixes: gap_cache infinite retry + Telegram MarkdownV2 escape</p>
+      <p><code>cd services/round-manager && railway up -s round-manager -d</code></p>
+    </div>
+    <div class="timeline-item">
+      <div class="time">Step 2</div>
+      <p><strong>Verify</strong></p>
+      <p>Check Railway logs: no more "Settling round 59080193" spam, no MarkdownV2 errors</p>
+    </div>
+    <div class="timeline-item">
+      <div class="time">Step 3 (Pending)</div>
+      <p><strong>Telegram Auth</strong></p>
+      <p>Awaiting debug info from user's Telegram test to verify token mismatch</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== RECOMMENDATIONS ==================== -->
+<h2>6. Recommendations</h2>
+
+<div class="card">
+  <h3>Short-term</h3>
+  <ul>
+    <li><strong>Verify Telegram bot token</strong> — Compare <code>TELEGRAM_BOT_TOKEN</code> on Vercel with BotFather token</li>
+    <li><strong>Resolve bot polling conflict</strong> — "terminated by other getUpdates request" indicates multiple bot instances. Ensure only one polls</li>
+    <li><strong>Improve bet timing</strong> — Disable bet button 2-3s before lock time to prevent <code>placeInvestment reverted</code></li>
+  </ul>
+
+  <h3>Medium-term</h3>
+  <ul>
+    <li><strong>Persist gap_cache</strong> — Consider Redis-backed cache to survive restarts without data loss</li>
+    <li><strong>Add Telegram auth retry</strong> — Auto-retry once on auth failure with short delay</li>
+    <li><strong>Remove debug info</strong> — After Telegram auth is resolved, strip tokenPrefix/hash from API response</li>
+  </ul>
+</div>
+
+<p style="text-align: center; color: var(--muted); margin-top: 3rem; font-size: 0.8rem;">
+  Generated 2026-03-02 | GFEX Incident Report
+</p>
+
+</body>
+</html>
