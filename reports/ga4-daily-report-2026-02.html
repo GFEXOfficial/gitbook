@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GFEX GA4 Daily Report | 2026.02.01 ~ 03.02</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e0e0e0; line-height: 1.6; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+  h1 { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .subtitle { color: #888; font-size: 14px; margin-bottom: 32px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 40px; }
+  .kpi-card { background: #141420; border: 1px solid #2a2a3a; border-radius: 12px; padding: 20px; }
+  .kpi-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+  .kpi-value { font-size: 28px; font-weight: 700; margin-top: 4px; }
+  .kpi-value.green { color: #4ade80; }
+  .kpi-value.blue { color: #60a5fa; }
+  .kpi-value.amber { color: #fbbf24; }
+  .kpi-value.purple { color: #a78bfa; }
+  .kpi-value.red { color: #f87171; }
+  .kpi-value.cyan { color: #22d3ee; }
+  h2 { font-size: 20px; color: #fff; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 1px solid #2a2a3a; }
+  h3 { font-size: 16px; color: #ccc; margin: 24px 0 12px; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+  th { background: #1a1a2e; color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; padding: 10px 12px; text-align: left; border-bottom: 1px solid #2a2a3a; }
+  th.r { text-align: right; }
+  td { padding: 10px 12px; border-bottom: 1px solid #1a1a2e; font-size: 13px; }
+  td.r { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:hover td { background: #1a1a2e; }
+  .chart-container { background: #141420; border: 1px solid #2a2a3a; border-radius: 12px; padding: 20px; margin-bottom: 24px; overflow-x: auto; }
+  .bar-chart { display: flex; align-items: flex-end; gap: 3px; height: 180px; padding-top: 10px; }
+  .bar-group { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 28px; }
+  .bar { width: 100%; border-radius: 3px 3px 0 0; min-height: 2px; transition: all .2s; cursor: pointer; position: relative; }
+  .bar:hover { opacity: 0.8; }
+  .bar.users { background: #60a5fa; }
+  .bar.sessions { background: #4ade80; }
+  .bar.pvs { background: #a78bfa; }
+  .bar-label { font-size: 9px; color: #666; margin-top: 6px; writing-mode: vertical-lr; text-orientation: mixed; height: 32px; }
+  .legend { display: flex; gap: 20px; margin-bottom: 12px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #aaa; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+  .section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 768px) { .section-grid { grid-template-columns: 1fr; } }
+  .funnel { display: flex; flex-direction: column; gap: 4px; margin: 16px 0; }
+  .funnel-step { display: flex; align-items: center; gap: 12px; }
+  .funnel-bar { height: 36px; border-radius: 6px; display: flex; align-items: center; padding: 0 12px; font-size: 13px; font-weight: 600; color: #fff; min-width: 40px; }
+  .funnel-label { font-size: 12px; color: #aaa; white-space: nowrap; min-width: 140px; }
+  .funnel-value { font-size: 12px; color: #ccc; margin-left: auto; white-space: nowrap; }
+  .funnel-rate { font-size: 11px; color: #888; margin-left: 8px; }
+  .insight-box { background: #1a1a10; border: 1px solid #3a3a20; border-radius: 10px; padding: 16px; margin: 16px 0; }
+  .insight-box h4 { color: #fbbf24; font-size: 13px; margin-bottom: 8px; }
+  .insight-box p { font-size: 13px; color: #ccc; }
+  .insight-box ul { padding-left: 16px; font-size: 13px; color: #ccc; }
+  .insight-box li { margin: 4px 0; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .tag.critical { background: #7f1d1d; color: #fca5a5; }
+  .tag.warning { background: #78350f; color: #fde68a; }
+  .tag.good { background: #064e3b; color: #6ee7b7; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>GFEX GA4 Daily Report</h1>
+<p class="subtitle">2026.02.01 ~ 2026.03.02 (30 days) | Property: 466483625</p>
+
+<!-- KPI Cards -->
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="kpi-label">Active Users</div>
+    <div class="kpi-value blue">165</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Total Sessions</div>
+    <div class="kpi-value green">315</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Page Views</div>
+    <div class="kpi-value purple">732</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">New Users</div>
+    <div class="kpi-value cyan">150</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Avg Bounce Rate</div>
+    <div class="kpi-value amber">5.7%</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Pages / Session</div>
+    <div class="kpi-value blue">2.32</div>
+  </div>
+</div>
+
+<!-- Daily Trend Chart -->
+<h2>Daily Trend</h2>
+<div class="chart-container">
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#60a5fa"></div> Users</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#4ade80"></div> Sessions</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#a78bfa"></div> Page Views</div>
+  </div>
+  <div class="bar-chart" id="dailyChart">
+    <!-- Feb 1 --><div class="bar-group"><div class="bar pvs" style="height:2%" title="2/1: 4U, 7S, 6PV"></div><div class="bar-label">2/1</div></div>
+    <!-- Feb 2 --><div class="bar-group"><div class="bar pvs" style="height:7%" title="2/2: 9U, 9S, 19PV"></div><div class="bar-label">2/2</div></div>
+    <!-- Feb 3 --><div class="bar-group"><div class="bar pvs" style="height:3%" title="2/3: 4U, 5S, 7PV"></div><div class="bar-label">2/3</div></div>
+    <!-- Feb 4 --><div class="bar-group"><div class="bar pvs" style="height:4%" title="2/4: 4U, 6S, 10PV"></div><div class="bar-label">2/4</div></div>
+    <!-- Feb 5 --><div class="bar-group"><div class="bar pvs" style="height:4%" title="2/5: 5U, 7S, 10PV"></div><div class="bar-label">2/5</div></div>
+    <!-- Feb 6 --><div class="bar-group"><div class="bar pvs" style="height:3%" title="2/6: 2U, 3S, 9PV"></div><div class="bar-label">2/6</div></div>
+    <!-- Feb 7 --><div class="bar-group"><div class="bar pvs" style="height:1%;background:#333" title="2/7: no data"></div><div class="bar-label" style="color:#444">2/7</div></div>
+    <!-- Feb 8 --><div class="bar-group"><div class="bar pvs" style="height:2%" title="2/8: 3U, 4S, 5PV"></div><div class="bar-label">2/8</div></div>
+    <!-- Feb 9 --><div class="bar-group"><div class="bar pvs" style="height:6%" title="2/9: 5U, 6S, 14PV"></div><div class="bar-label">2/9</div></div>
+    <!-- Feb 10 --><div class="bar-group"><div class="bar pvs" style="height:7%" title="2/10: 4U, 5S, 15PV"></div><div class="bar-label">2/10</div></div>
+    <!-- Feb 11 --><div class="bar-group"><div class="bar pvs" style="height:4%" title="2/11: 6U, 8S, 10PV"></div><div class="bar-label">2/11</div></div>
+    <!-- Feb 12 --><div class="bar-group"><div class="bar pvs" style="height:3%" title="2/12: 6U, 6S, 7PV"></div><div class="bar-label">2/12</div></div>
+    <!-- Feb 13 --><div class="bar-group"><div class="bar pvs" style="height:1%" title="2/13: 1U, 1S, 1PV"></div><div class="bar-label">2/13</div></div>
+    <!-- Feb 14 --><div class="bar-group"><div class="bar pvs" style="height:1%" title="2/14: 2U, 2S, 2PV"></div><div class="bar-label">2/14</div></div>
+    <!-- Feb 15 --><div class="bar-group"><div class="bar pvs" style="height:9%" title="2/15: 9U, 13S, 21PV"></div><div class="bar-label">2/15</div></div>
+    <!-- Feb 16 --><div class="bar-group"><div class="bar pvs" style="height:7%" title="2/16: 4U, 7S, 16PV"></div><div class="bar-label">2/16</div></div>
+    <!-- Feb 17 --><div class="bar-group"><div class="bar pvs" style="height:10%" title="2/17: 6U, 8S, 23PV"></div><div class="bar-label">2/17</div></div>
+    <!-- Feb 18 --><div class="bar-group"><div class="bar pvs" style="height:2%" title="2/18: 3U, 3S, 4PV"></div><div class="bar-label">2/18</div></div>
+    <!-- Feb 19 --><div class="bar-group"><div class="bar pvs" style="height:5%" title="2/19: 8U, 8S, 12PV"></div><div class="bar-label">2/19</div></div>
+    <!-- Feb 20 --><div class="bar-group"><div class="bar pvs" style="height:4%" title="2/20: 7U, 7S, 10PV"></div><div class="bar-label">2/20</div></div>
+    <!-- Feb 21 --><div class="bar-group"><div class="bar pvs" style="height:18%" title="2/21: 13U, 20S, 42PV"></div><div class="bar-label" style="color:#60a5fa;font-weight:700">2/21</div></div>
+    <!-- Feb 22 --><div class="bar-group"><div class="bar pvs" style="height:29%" title="2/22: 10U, 16S, 68PV"></div><div class="bar-label" style="color:#a78bfa;font-weight:700">2/22</div></div>
+    <!-- Feb 23 --><div class="bar-group"><div class="bar pvs" style="height:13%" title="2/23: 10U, 12S, 30PV"></div><div class="bar-label">2/23</div></div>
+    <!-- Feb 24 --><div class="bar-group"><div class="bar pvs" style="height:26%" title="2/24: 8U, 22S, 61PV"></div><div class="bar-label" style="color:#a78bfa;font-weight:700">2/24</div></div>
+    <!-- Feb 25 --><div class="bar-group"><div class="bar pvs" style="height:19%" title="2/25: 16U, 26S, 44PV"></div><div class="bar-label" style="color:#60a5fa;font-weight:700">2/25</div></div>
+    <!-- Feb 26 --><div class="bar-group"><div class="bar pvs" style="height:8%" title="2/26: 4U, 6S, 19PV"></div><div class="bar-label">2/26</div></div>
+    <!-- Feb 27 --><div class="bar-group"><div class="bar pvs" style="height:16%" title="2/27: 22U, 24S, 37PV"></div><div class="bar-label" style="color:#60a5fa;font-weight:700">2/27</div></div>
+    <!-- Feb 28 --><div class="bar-group"><div class="bar pvs" style="height:32%" title="2/28: 25U, 30S, 74PV"></div><div class="bar-label" style="color:#4ade80;font-weight:700">2/28</div></div>
+    <!-- Mar 1 --><div class="bar-group"><div class="bar pvs" style="height:67%" title="3/1: 19U, 39S, 156PV"></div><div class="bar-label" style="color:#fbbf24;font-weight:700">3/1</div></div>
+  </div>
+</div>
+
+<div class="insight-box">
+  <h4>Trend Insight</h4>
+  <ul>
+    <li><strong>2/21~3/1 급성장</strong>: 마지막 9일간 트래픽이 폭증. 특히 3/1은 156 PV로 전체 기간 최고치</li>
+    <li><strong>2/1~2/20 평균</strong>: 일 ~5 Users, ~6 Sessions → <strong>2/21 이후</strong>: 일 ~15 Users, ~24 Sessions (3x 성장)</li>
+    <li><strong>2/7 데이터 없음</strong>: 해당일 트래픽 0 — 서비스 다운 또는 트래킹 이슈 확인 필요</li>
+  </ul>
+</div>
+
+<!-- Daily Data Table -->
+<h2>Daily Breakdown</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th class="r">Users</th>
+      <th class="r">New</th>
+      <th class="r">Sessions</th>
+      <th class="r">PV</th>
+      <th class="r">PV/S</th>
+      <th class="r">Bounce</th>
+      <th class="r">Avg Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>02/01</td><td class="r">4</td><td class="r">2</td><td class="r">7</td><td class="r">6</td><td class="r">0.86</td><td class="r">14.3%</td><td class="r">0:09</td></tr>
+    <tr><td>02/02</td><td class="r">9</td><td class="r">6</td><td class="r">9</td><td class="r">19</td><td class="r">2.11</td><td class="r">0%</td><td class="r">7:10</td></tr>
+    <tr><td>02/03</td><td class="r">4</td><td class="r">3</td><td class="r">5</td><td class="r">7</td><td class="r">1.40</td><td class="r">0%</td><td class="r">0:15</td></tr>
+    <tr><td>02/04</td><td class="r">4</td><td class="r">2</td><td class="r">6</td><td class="r">10</td><td class="r">1.67</td><td class="r">0%</td><td class="r">5:46</td></tr>
+    <tr><td>02/05</td><td class="r">5</td><td class="r">3</td><td class="r">7</td><td class="r">10</td><td class="r">1.43</td><td class="r">14.3%</td><td class="r">0:59</td></tr>
+    <tr><td>02/06</td><td class="r">2</td><td class="r">0</td><td class="r">3</td><td class="r">9</td><td class="r">3.00</td><td class="r">33.3%</td><td class="r">1:05</td></tr>
+    <tr style="color:#555"><td>02/07</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td></tr>
+    <tr><td>02/08</td><td class="r">3</td><td class="r">2</td><td class="r">4</td><td class="r">5</td><td class="r">1.25</td><td class="r">0%</td><td class="r">0:22</td></tr>
+    <tr><td>02/09</td><td class="r">5</td><td class="r">3</td><td class="r">6</td><td class="r">14</td><td class="r">2.33</td><td class="r">16.7%</td><td class="r">2:30</td></tr>
+    <tr><td>02/10</td><td class="r">4</td><td class="r">1</td><td class="r">5</td><td class="r">15</td><td class="r">3.00</td><td class="r">0%</td><td class="r">1:56</td></tr>
+    <tr><td>02/11</td><td class="r">6</td><td class="r">4</td><td class="r">8</td><td class="r">10</td><td class="r">1.25</td><td class="r">12.5%</td><td class="r">0:04</td></tr>
+    <tr><td>02/12</td><td class="r">6</td><td class="r">5</td><td class="r">6</td><td class="r">7</td><td class="r">1.17</td><td class="r">0%</td><td class="r">1:41</td></tr>
+    <tr><td>02/13</td><td class="r">1</td><td class="r">1</td><td class="r">1</td><td class="r">1</td><td class="r">1.00</td><td class="r">0%</td><td class="r">0:00</td></tr>
+    <tr><td>02/14</td><td class="r">2</td><td class="r">1</td><td class="r">2</td><td class="r">2</td><td class="r">1.00</td><td class="r">0%</td><td class="r">0:08</td></tr>
+    <tr style="background:#1a1a2e"><td>02/15</td><td class="r">9</td><td class="r">5</td><td class="r">13</td><td class="r">21</td><td class="r">1.62</td><td class="r">7.7%</td><td class="r">3:24</td></tr>
+    <tr><td>02/16</td><td class="r">4</td><td class="r">1</td><td class="r">7</td><td class="r">16</td><td class="r">2.29</td><td class="r">0%</td><td class="r">4:12</td></tr>
+    <tr><td>02/17</td><td class="r">6</td><td class="r">5</td><td class="r">8</td><td class="r">23</td><td class="r">2.88</td><td class="r">0%</td><td class="r">2:29</td></tr>
+    <tr><td>02/18</td><td class="r">3</td><td class="r">2</td><td class="r">3</td><td class="r">4</td><td class="r">1.33</td><td class="r">0%</td><td class="r">0:06</td></tr>
+    <tr><td>02/19</td><td class="r">8</td><td class="r">7</td><td class="r">8</td><td class="r">12</td><td class="r">1.50</td><td class="r">0%</td><td class="r">0:58</td></tr>
+    <tr><td>02/20</td><td class="r">7</td><td class="r">6</td><td class="r">7</td><td class="r">10</td><td class="r">1.43</td><td class="r">0%</td><td class="r">3:03</td></tr>
+    <tr style="background:#1a1a2e"><td><strong>02/21</strong></td><td class="r"><strong>13</strong></td><td class="r">10</td><td class="r"><strong>20</strong></td><td class="r"><strong>42</strong></td><td class="r">2.10</td><td class="r">0%</td><td class="r">2:26</td></tr>
+    <tr style="background:#1a1a2e"><td><strong>02/22</strong></td><td class="r">10</td><td class="r">5</td><td class="r">16</td><td class="r"><strong>68</strong></td><td class="r">4.25</td><td class="r">6.3%</td><td class="r">15:46</td></tr>
+    <tr style="background:#1a1a2e"><td><strong>02/23</strong></td><td class="r">10</td><td class="r">4</td><td class="r">12</td><td class="r">30</td><td class="r">2.50</td><td class="r">0%</td><td class="r">6:22</td></tr>
+    <tr style="background:#1a1a2e"><td><strong>02/24</strong></td><td class="r">8</td><td class="r">2</td><td class="r"><strong>22</strong></td><td class="r"><strong>61</strong></td><td class="r">2.77</td><td class="r">27.3%</td><td class="r">13:34</td></tr>
+    <tr style="background:#1a1a2e"><td><strong>02/25</strong></td><td class="r"><strong>16</strong></td><td class="r">12</td><td class="r"><strong>26</strong></td><td class="r">44</td><td class="r">1.69</td><td class="r">3.8%</td><td class="r">5:56</td></tr>
+    <tr><td>02/26</td><td class="r">4</td><td class="r">1</td><td class="r">6</td><td class="r">19</td><td class="r">3.17</td><td class="r">0%</td><td class="r">2:58</td></tr>
+    <tr style="background:#1a1a2e"><td><strong>02/27</strong></td><td class="r"><strong>22</strong></td><td class="r">20</td><td class="r">24</td><td class="r">37</td><td class="r">1.54</td><td class="r">4.2%</td><td class="r">1:20</td></tr>
+    <tr style="background:#1a1a2e"><td><strong>02/28</strong></td><td class="r"><strong>25</strong></td><td class="r">22</td><td class="r"><strong>30</strong></td><td class="r"><strong>74</strong></td><td class="r">2.47</td><td class="r">6.7%</td><td class="r">6:50</td></tr>
+    <tr style="background:#2a1a1e"><td><strong style="color:#fbbf24">03/01</strong></td><td class="r"><strong style="color:#fbbf24">19</strong></td><td class="r">15</td><td class="r"><strong style="color:#fbbf24">39</strong></td><td class="r"><strong style="color:#fbbf24">156</strong></td><td class="r"><strong>4.00</strong></td><td class="r">5.1%</td><td class="r">11:33</td></tr>
+  </tbody>
+</table>
+
+<div class="section-grid">
+
+<!-- Traffic Source -->
+<div>
+<h2>Traffic Sources</h2>
+<table>
+  <thead>
+    <tr><th>Source / Medium</th><th class="r">Sessions</th><th class="r">Users</th><th class="r">PV</th><th class="r">Bounce</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>(direct) / (none)</td><td class="r"><strong>175</strong></td><td class="r">130</td><td class="r">359</td><td class="r">1.7%</td></tr>
+    <tr><td>vercel.com / referral</td><td class="r">39</td><td class="r">2</td><td class="r">191</td><td class="r">12.8%</td></tr>
+    <tr><td>t.co / referral</td><td class="r">33</td><td class="r">20</td><td class="r">56</td><td class="r">9.1%</td></tr>
+    <tr><td>portfolio.metamask.io</td><td class="r">12</td><td class="r">2</td><td class="r">33</td><td class="r">0%</td></tr>
+    <tr><td>github.com / referral</td><td class="r">11</td><td class="r">2</td><td class="r">29</td><td class="r">9.1%</td></tr>
+    <tr><td>email / newsletter</td><td class="r">10</td><td class="r">2</td><td class="r">12</td><td class="r">20%</td></tr>
+    <tr><td>app.gitbook.com</td><td class="r">9</td><td class="r">1</td><td class="r">9</td><td class="r">11.1%</td></tr>
+    <tr><td>accounts.google.com</td><td class="r">5</td><td class="r">2</td><td class="r">4</td><td class="r">40%</td></tr>
+    <tr><td>google / organic</td><td class="r">4</td><td class="r">4</td><td class="r">8</td><td class="r">0%</td></tr>
+    <tr><td>bing / organic</td><td class="r">3</td><td class="r">3</td><td class="r">3</td><td class="r">0%</td></tr>
+    <tr><td>DappRadar / deeplink</td><td class="r">2</td><td class="r">2</td><td class="r">9</td><td class="r">0%</td></tr>
+    <tr><td>dappradar.com</td><td class="r">2</td><td class="r">1</td><td class="r">5</td><td class="r">0%</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- Pages -->
+<div>
+<h2>Top Pages</h2>
+<table>
+  <thead>
+    <tr><th>Page</th><th class="r">PV</th><th class="r">Users</th><th class="r">Bounce</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>/</td><td class="r"><strong>574</strong></td><td class="r">159</td><td class="r">4.4%</td></tr>
+    <tr><td>/mypage</td><td class="r">49</td><td class="r">9</td><td class="r">7.4%</td></tr>
+    <tr><td>/rewardpot</td><td class="r">24</td><td class="r">11</td><td class="r">5.3%</td></tr>
+    <tr><td>/quick-trade</td><td class="r">23</td><td class="r">9</td><td class="r">10%</td></tr>
+    <tr><td>/ranking</td><td class="r">18</td><td class="r">4</td><td class="r">0%</td></tr>
+    <tr><td>/config</td><td class="r">15</td><td class="r">6</td><td class="r">11.8%</td></tr>
+    <tr><td>/docs/tos</td><td class="r">9</td><td class="r">2</td><td class="r">22.2%</td></tr>
+    <tr><td>/trading</td><td class="r">6</td><td class="r">5</td><td class="r">0%</td></tr>
+    <tr><td>/docs/disclaimer</td><td class="r">5</td><td class="r">2</td><td class="r">20%</td></tr>
+    <tr><td>/docs/faq</td><td class="r">2</td><td class="r">2</td><td class="r">0%</td></tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<div class="section-grid">
+<!-- Device Split -->
+<div>
+<h2>Device Split</h2>
+<table>
+  <thead>
+    <tr><th>Device</th><th class="r">Sessions</th><th class="r">Users</th><th class="r">PV</th><th class="r">Share</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Desktop</td><td class="r">217</td><td class="r">106</td><td class="r">512</td><td class="r"><strong>68.9%</strong></td></tr>
+    <tr><td>Mobile</td><td class="r">94</td><td class="r">58</td><td class="r">216</td><td class="r">29.8%</td></tr>
+    <tr><td>Tablet</td><td class="r">4</td><td class="r">4</td><td class="r">4</td><td class="r">1.3%</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- Country -->
+<div>
+<h2>Top Countries</h2>
+<table>
+  <thead>
+    <tr><th>Country</th><th class="r">Sessions</th><th class="r">Users</th><th class="r">PV</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>South Korea</td><td class="r"><strong>163</strong></td><td class="r">29</td><td class="r">486</td></tr>
+    <tr><td>United States</td><td class="r">66</td><td class="r">65</td><td class="r">92</td></tr>
+    <tr><td>Nigeria</td><td class="r">17</td><td class="r">15</td><td class="r">21</td></tr>
+    <tr><td>China</td><td class="r">14</td><td class="r">13</td><td class="r">25</td></tr>
+    <tr><td>Japan</td><td class="r">6</td><td class="r">6</td><td class="r">8</td></tr>
+    <tr><td>Australia</td><td class="r">3</td><td class="r">3</td><td class="r">4</td></tr>
+    <tr><td>Indonesia</td><td class="r">3</td><td class="r">3</td><td class="r">9</td></tr>
+    <tr><td>Russia</td><td class="r">3</td><td class="r">3</td><td class="r">3</td></tr>
+    <tr><td>Hong Kong</td><td class="r">3</td><td class="r">2</td><td class="r">7</td></tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<!-- Funnel Analysis -->
+<h2>User Funnel Analysis</h2>
+<div class="chart-container">
+  <div class="funnel">
+    <div class="funnel-step">
+      <div class="funnel-label">1. First Visit</div>
+      <div class="funnel-bar" style="width:100%;background:linear-gradient(90deg,#3b82f6,#60a5fa)">150</div>
+      <div class="funnel-value">100%</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-label">2. Wallet Connect</div>
+      <div class="funnel-bar" style="width:65%;background:linear-gradient(90deg,#8b5cf6,#a78bfa)">149 (18 users)</div>
+      <div class="funnel-value">12.0% of visitors</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-label">3. Direction Selected</div>
+      <div class="funnel-bar" style="width:46%;background:linear-gradient(90deg,#06b6d4,#22d3ee)">106 (11 users)</div>
+      <div class="funnel-value">7.3%</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-label">4. Investment Success</div>
+      <div class="funnel-bar" style="width:38%;background:linear-gradient(90deg,#10b981,#34d399)">89 (7 users)</div>
+      <div class="funnel-value">4.7%</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-label">4a. Investment Fail</div>
+      <div class="funnel-bar" style="width:10%;background:linear-gradient(90deg,#ef4444,#f87171)">22 (2 users)</div>
+      <div class="funnel-value">1.3%</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-label">5. Reinvestment</div>
+      <div class="funnel-bar" style="width:9%;background:linear-gradient(90deg,#f59e0b,#fbbf24)">20 (4 users)</div>
+      <div class="funnel-value">2.7%</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-label">6. Share Click</div>
+      <div class="funnel-bar" style="width:9%;background:linear-gradient(90deg,#ec4899,#f472b6)">21 (5 users)</div>
+      <div class="funnel-value">3.3%</div>
+    </div>
+  </div>
+</div>
+
+<div class="insight-box">
+  <h4>Funnel Insights</h4>
+  <ul>
+    <li><strong>Wallet Connect → Direction:</strong> 18명 중 11명 전환 (61%) — 지갑 연결한 유저의 참여도 높음</li>
+    <li><strong>Direction → Success:</strong> 11명 중 7명 성공 (64%) — 방향 선택 후 투자 완료율 양호</li>
+    <li><strong>Success:Fail 비율:</strong> 89:22 = 4:1 — 성공률 80%로 양호</li>
+    <li><strong>Reinvestment:</strong> 투자 성공자 7명 중 4명이 재투자 (57%) — 핵심 유저 리텐션 강함</li>
+    <li><span class="tag critical">CRITICAL</span> <strong>First Visit → Wallet Connect:</strong> 150명 중 18명만 (12%) — 온보딩 퍼널 병목</li>
+    <li><span class="tag warning">WARNING</span> <strong>Guest Investment:</strong> 12건 (6명) — 게스트 투자 후 지갑 연결 전환 추적 필요</li>
+  </ul>
+</div>
+
+<!-- Event Breakdown -->
+<h2>All Events</h2>
+<table>
+  <thead>
+    <tr><th>Event Name</th><th class="r">Count</th><th class="r">Users</th><th>Funnel Stage</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>page_view</td><td class="r">732</td><td class="r">165</td><td>—</td></tr>
+    <tr><td>scroll</td><td class="r">484</td><td class="r">144</td><td>Engagement</td></tr>
+    <tr><td>user_engagement</td><td class="r">335</td><td class="r">91</td><td>Engagement</td></tr>
+    <tr><td>session_start</td><td class="r">305</td><td class="r">165</td><td>—</td></tr>
+    <tr><td>first_visit</td><td class="r">150</td><td class="r">150</td><td><span class="tag good">Acquisition</span></td></tr>
+    <tr><td>wallet_connect</td><td class="r">149</td><td class="r">18</td><td><span class="tag good">Activation</span></td></tr>
+    <tr><td>direction_selected</td><td class="r">106</td><td class="r">11</td><td><span class="tag good">Activation</span></td></tr>
+    <tr><td>investment_success</td><td class="r">89</td><td class="r">7</td><td><span class="tag good">Revenue</span></td></tr>
+    <tr><td>telegram_auto_login</td><td class="r">44</td><td class="r">2</td><td>Auth</td></tr>
+    <tr><td>click</td><td class="r">38</td><td class="r">11</td><td>Engagement</td></tr>
+    <tr><td>investment_fail</td><td class="r">22</td><td class="r">2</td><td><span class="tag critical">Drop-off</span></td></tr>
+    <tr><td>share_click</td><td class="r">21</td><td class="r">5</td><td><span class="tag good">Referral</span></td></tr>
+    <tr><td>reinvestment</td><td class="r">20</td><td class="r">4</td><td><span class="tag good">Retention</span></td></tr>
+    <tr><td>approval_complete</td><td class="r">15</td><td class="r">1</td><td>Activation</td></tr>
+    <tr><td>guest_investment_complete</td><td class="r">12</td><td class="r">6</td><td><span class="tag warning">Guest</span></td></tr>
+    <tr><td>timing_expired</td><td class="r">4</td><td class="r">1</td><td><span class="tag critical">Drop-off</span></td></tr>
+    <tr><td>utm_landing</td><td class="r">4</td><td class="r">4</td><td>Acquisition</td></tr>
+    <tr><td>balance_insufficient</td><td class="r">3</td><td class="r">3</td><td><span class="tag critical">Friction</span></td></tr>
+    <tr><td>navigation_mypage</td><td class="r">2</td><td class="r">2</td><td>Engagement</td></tr>
+    <tr><td>referral_landing</td><td class="r">1</td><td class="r">1</td><td>Acquisition</td></tr>
+    <tr><td>promotional_email_landing</td><td class="r">1</td><td class="r">1</td><td>Acquisition</td></tr>
+  </tbody>
+</table>
+
+<!-- Action Items -->
+<h2>Priority Actions</h2>
+<div class="insight-box">
+  <h4>P0 — Onboarding Funnel (Visit → Wallet Connect: 12%)</h4>
+  <ul>
+    <li>150명 방문 중 18명만 지갑 연결 — <strong>88% 이탈</strong></li>
+    <li>홈페이지(574 PV)에서 /quick-trade(23 PV)로의 전환 극히 낮음</li>
+    <li><strong>Action:</strong> 홈 CTA 강화, 원클릭 지갑 연결 UX 개선, 게스트 모드 활성화</li>
+  </ul>
+</div>
+<div class="insight-box">
+  <h4>P1 — Traffic Source 편중</h4>
+  <ul>
+    <li>Direct 55.6% + Vercel 12.4% + t.co 10.5% = 상위 3개가 78.5%</li>
+    <li>Organic Search(Google+Bing) = 2.2% — SEO 거의 없음</li>
+    <li><strong>Action:</strong> DeFi 관련 키워드 SEO, 콘텐츠 마케팅, DappRadar/DefiLlama 리스팅 강화</li>
+  </ul>
+</div>
+<div class="insight-box">
+  <h4>P1 — Korea 집중 리스크</h4>
+  <ul>
+    <li>한국 29 Users → 163 Sessions (유저당 5.6 세션) = 소수 파워유저</li>
+    <li>미국 65 Users → 66 Sessions (유저당 1.0) = 방문 후 이탈</li>
+    <li><strong>Action:</strong> 글로벌 유저 리텐션 전략, 영어 온보딩 최적화</li>
+  </ul>
+</div>
+<div class="insight-box">
+  <h4>P2 — Guest → Registered 전환</h4>
+  <ul>
+    <li>guest_investment_complete 12건(6명) — 지갑 없이 체험 후 전환 추적 부재</li>
+    <li><strong>Action:</strong> 게스트 투자 후 지갑 연결 유도 플로우 추가, 전환 이벤트 추가</li>
+  </ul>
+</div>
+
+<p style="text-align:center;color:#555;margin-top:40px;font-size:12px;">
+  Generated: 2026-03-02 | Data Source: GA4 (properties/466483625) | Report by Claude
+</p>
+
+</div>
+</body>
+</html>
